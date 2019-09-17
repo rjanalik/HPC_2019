@@ -1,0 +1,5 @@
+Host icsmaster
+   Hostname hpc.ics.usi.ch
+   Port 22
+   User studXX
+   IdentityFile ~/.ssh/id_rsa
