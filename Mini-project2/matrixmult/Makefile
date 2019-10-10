@@ -6,7 +6,10 @@ ifeq ($(UNAME),Linux)
 	GOTO=-Wl,--no-as-needed -L${MKLROOT}/lib/intel64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm -ldl -m64 -I${MKLROOT}/include
 else
 	ifeq ($(UNAME),Darwin)
-	GOTO=-Wl,-L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm -ldl -m64 -I${MKLROOT}/include
+	# Use Intel MKL
+	#GOTO=-Wl,-L${MKLROOT}/lib -Wl,-rpath,${MKLROOT}/lib -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm -ldl -m64 -I${MKLROOT}/include
+	# Use Apple framework Accelerate
+	GOTO=-framework Accelerate
 	else
 		GOTO=-lblas
 	endif
