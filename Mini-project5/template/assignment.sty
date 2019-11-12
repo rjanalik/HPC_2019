@@ -1,0 +1,321 @@
+%%  % for readable pdf files
+%%  \usepackage{times} 
+\usepackage{ifthen}
+\usepackage{comment}
+\usepackage[utf8]{inputenc}
+%%  \usepackage{enumerate}
+%%  \usepackage{alltt}
+%%  \usepackage{xspace}
+%%  \usepackage{wrapfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+% \usepackage{amsmath}
+%%  \usepackage{mathtools}
+\usepackage{amssymb}
+%\usepackage[xetex,bookmarks,pdfencoding=unicode,colorlinks=true,citecolor=blue,linkcolor=black,urlcolor=blue]{hyperref}
+\usepackage[bookmarks,pdfencoding=unicode,colorlinks=true,citecolor=blue,linkcolor=black,urlcolor=blue]{hyperref}
+% \usepackage{nohyperref}
+%\usepackage{url}
+%%  \usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage{listingsutf8}
+\usepackage{color}
+%%  \usepackage{textcomp}
+%%  \usepackage{cmap}
+%%  \usepackage[colorinlistoftodos]{todonotes}
+%%  \usepackage{lineno}
+%%  \usepackage{tocloft}
+%%  \usepackage{marginnote}
+\usepackage{geometry}
+\usepackage{booktabs}
+%%  \usepackage{longtable}
+%%  \usepackage{etoolbox}
+%%  \usepackage{titlesec}
+\usepackage[font=small,labelfont=it,labelsep=period,justification=centering]{caption}
+\usepackage{array}
+%%  %\usepackage{tabularx}
+%%  \usepackage[titletoc]{appendix}%
+
+\pagestyle{plain}
+\voffset -5mm
+
+\oddsidemargin  0mm
+\evensidemargin -11mm
+\marginparwidth 2cm
+\marginparsep 0pt
+
+\topmargin 0mm
+\headheight 0pt
+\headsep 0pt
+\topskip 0pt        
+
+%\footheight 0pt
+%\footskip 0pt
+\textheight 255mm
+\textwidth 165mm
+
+% ----------------------------------------
+%
+% II. Macros
+%
+% ----------------------------------------
+
+\let\gaga=\phi \let\phi=\varphi \let\varphi=\gaga
+\let\gaga=\theta \let\theta=\vartheta \let\vartheta=\gaga
+\let\gaga=\epsilon \let\epsilon=\varepsilon \let\varepsilon=\gaga
+
+\newcommand\code[1]{ {\footnotesize \texttt{#1}} }
+
+\newcommand\isassignment {false}
+\newcommand{\setassignment}{\renewcommand\isassignment {true}}
+\newcommand{\ifassignment}[1]{\ifthenelse{\boolean{\isassignment}}{#1}{}}
+\newcommand{\ifnotassignment}[1]{\ifthenelse{\boolean{\isassignment}}{}{#1}}
+\newcommand{\ignore}[1]{}
+\newcommand{\duedate} {}
+\newcommand{\setduedate}[1]{%
+\renewcommand\duedate {Due date:~ #1}
+}
+\newcommand{\assignmentpolicy}{
+\bigskip
+\bigskip
+\begin{table}[h]
+\begin{center}
+\scalebox{0.8} {%
+\begin{tabular}{|p{0.02cm}p{16cm}|}
+\hline
+&\\
+\multicolumn{2}{|c|}{\Large\textbf{Submission instructions}}\\
+\multicolumn{2}{|c|}{\large\textbf{(Please, notice that following instructions are mandatory: }}\\
+\multicolumn{2}{|c|}{\large\textbf{submissions that don't comply with, won't be considered)}}\\
+&\\
+\textbullet & Assignments must be submitted to Moodle (i.e. in electronic format).\\
+\textbullet & Provide both executable package (single .class or .jar file) and sources (.java files). If you are using non-sdk libraries, please add them in the file. Sources must be organized in packages called:\\
+\multicolumn{2}{|c|}{\textit{ch.usi.inf.ncc12.assignment$<$assignmentNumber$>$.exercise$<$exerciseNumber$>$.$<$name$>$.$<$surname$>$}}\\
+& and  the jar file must be called:\\
+\multicolumn{2}{|c|}{\textit{assignment$<$AssignmentNumber$>$.$<$Name$>$.$<$Surname$>$.jar}}\\
+& Projects exported directly from Eclipse would be much appreciated (Please, be sure that you are including also the sources in the jar file).\\
+\textbullet & The produced files (one pdf and one jar file) must be collected into a single archive file (.zip) named:\\
+\multicolumn{2}{|c|}{\textit{assignment$<$AssignmentNumber$>$.$<$Name$>$.$<$Surname$>$.zip}}\\
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table}
+}
+\newcommand{\ie}{\textit{i.e.,}\xspace}
+\newcommand{\eg}{\textit{e.g.,}\xspace}
+\newcommand{\etal}{\textit{et al.}\xspace}
+
+\newcommand\nat{{\Bbb N}}
+\def\int{{\Bbb Z}}
+\newcommand\rat{{\Bbb Q}}
+\newcommand\real{{\Bbb R}}
+\newcommand\calD{{\cal D}}
+\newcommand\calM{{\cal M}}
+\newcommand\calL{{\cal L}}
+\newcommand\Gone{\bfmath{G1}}%
+\newcommand\Gonei{\bfmath{G1i}}%
+\newcommand\Goneai{\bfmath{G1(i)}}%
+\newcommand\Gtwo{\bfmath{G2}}%
+\newcommand\Gtwoi{\bfmath{G2i}}%
+\newcommand\Gtwoai{\bfmath{G2(i)}}%
+\newcommand\Gthree{\bfmath{G3}}%
+\newcommand\Gthreei{\bfmath{G3i}}%
+\newcommand\Gthreeai{\bfmath{G3(i)}}%
+\newcommand\True{\bfmath{True}}
+\newcommand\False{\bfmath{False}}
+\newcommand\FV{\itmath{FV}}
+%
+% mathrel's
+%
+\def\maps{\mathrel{:}}
+\def\andthen{\mathrel{;}}
+\def\suchthat{\mathrel{:}}
+\def\defid{\mathrel{:\equiv}}
+\def\defeq{\mathrel{:=}}
+\def\eqdef{\mathrel{=:}}
+\def\gewenn{\leftrightarrow}
+\newcommand\tnt{\mathrel{\supset}}
+\newcommand\pr{\mathrel{\vdash}}%
+\def\prld#1#2{\mathrel{\vrule width 0.3pt height 8pt depth 2pt\mkern-2mu\textstyle{\hskip0.5ex\raise2pt\hbox{$\scriptstyle#1$}\hskip0.1ex\over\hskip0.5ex#2\hskip0.1ex}}}
+\def\defGewenn{\mathrel{{:}{\Longleftrightarrow}}}
+\def\Gewenn{\mathrel{\Longleftrightarrow}}
+\def\To{\mathrel{\Longrightarrow}}
+\def\defsimeq{\mathrel{:\simeq}}
+\def\redone{\mathrel{\vartriangleright_1}}
+\def\red{\mathrel{\vartriangleright}}
+%
+% mathbin's
+%
+\newlength{\lminus}
+\settowidth{\lminus}{\hbox{$-$}}
+\def\dotmin{\mathbin{\vbox{\lineskip0pt\baselineskip0pt\hbox to\lminus{\hfill.\hfill}\vglue-0.55ex\hbox{$-$}}}}
+
+%
+% mathop's
+%
+\def\pow{\mathop{\rm Pow}}
+\def\dom{\mathop{\rm dom}}
+\def\ran{\mathop{\rm ran}}
+\def\seq#1{\langle #1\rangle}
+\def\Seq{\mathop{\it Seq}}
+\def\lh{\mathop{\it lh}}
+
+%
+% points
+%
+\newcommand{\punkte}[1]{\hspace{1ex}\emph{\mdseries\hfill(#1~\ifcase#1{Points}\or{Points}\else{Points}\fi)}}
+
+% ----------------------------------------------------------------------
+\newcommand\secRule{\vspace{-4mm} \rule{.5\textwidth}{4pt}\vspace{-5mm}}
+\newcommand{\vf}{\vspace{7mm plus7mm minus1mm}}
+\newcommand{\compl}{{\rm c}}
+\newcommand{\blank}{\hspace{0.5em}}
+\newcommand\nyt{\rule{0pt}{0pt}}
+\newcommand{\emspace}{\hspace{1em}}
+
+\newcounter{countaufg}
+
+\newenvironment{exercise}[1]{\addtocounter{countaufg}{1}%
+      \bigskip%
+      \subsection*{Exercise \arabic{countaufg} - %\series{m}
+	   \selectfont #1%
+	 \makeatother}%
+      \bigskip%
+      }      
+
+\newenvironment{optexercise}[1]{\addtocounter{countaufg}{1}%
+      \bigskip%
+      \subsection*{Exercise \arabic{countaufg} (optional) - %\series{m}
+	   \selectfont #1%
+	 \makeatother}%
+      \bigskip%
+      }%
+
+\newcommand\hint[1]{\emph{Hint :} #1}
+\newcommand\note[1]{\emph{Note :} #1}
+
+\newcommand\serieheader[6]{
+\thispagestyle{empty}%
+\begin{flushleft}
+\includegraphics[width=0.4\textwidth]{usi_inf}
+\end{flushleft}
+  \noindent%
+  {\large\ignorespaces{\textbf{#1}}\hspace{\fill}\ignorespaces{ \textbf{#2}}}\\ \\%
+  {\large\ignorespaces #3 \hspace{\fill}\ignorespaces #4}\\
+  \noindent%
+  \bigskip
+  \hrule\par\bigskip\noindent%
+  \bigskip {\ignorespaces {\Large{\textbf{#5}}}
+  \hspace{\fill}\ignorespaces \large \ifthenelse{\boolean{\isassignment}}{\duedate}{#6}}
+  \hrule\par\bigskip\noindent%  \linebreak
+ }
+
+\makeatletter
+\def\enumerateMod{\ifnum \@enumdepth >3 \@toodeep\else
+      \advance\@enumdepth \@ne
+      \edef\@enumctr{enum\romannumeral\the\@enumdepth}\list
+      {\csname label\@enumctr\endcsname}{\usecounter
+        {\@enumctr}%%%? the following differs from "enumerate"
+	\topsep0pt%
+	\partopsep0pt%
+	\itemsep0pt%
+	%%%? end(differs)
+	\def\makelabel##1{\hss\llap{##1}}}\fi}
+\let\endenumerateMod =\endlist
+\makeatother
+
+
+\usepackage{etex}
+\usepackage{type1ec}
+\usepackage[T2A]{fontenc}
+\usepackage{textcomp}
+%\usepackage[utf8]{inputenc}
+
+%%  \usepackage{polyglossia}
+%%  %\defaultfontfeatures{Scale=MatchLowercase, Mapping=tex-text}
+%%  \setmainfont[Scale=MatchLowercase, Mapping=tex-text]{Times New Roman}
+%%  \newfontfamily\cyrillicfont[Scale=MatchLowercase, Mapping=tex-text]{Times New Roman}
+%%  \setsansfont[Scale=MatchLowercase, Mapping=tex-text]{Times New Roman}
+%%  \setmonofont{Courier New}
+%%  
+%%  \setdefaultlanguage{english}
+%%  \selectlanguage{english}
+
+\geometry{inner=25mm, outer=25mm, top=35mm, bottom=35mm, headheight=25mm, headsep=6.17mm}
+\textwidth=0.8\paperwidth
+\linespread{1.2}
+
+%%  \font\smallfont="Times New Roman" at 9 pt
+%%  \font\chapterfont="Times New Roman" at 16 pt
+%%  \font\chaptertitlefont="Times New Roman" at 18 pt
+%%  \font\sectionfont="Times New Roman Bold" at 11 pt
+%%  \font\subsectionfont="Times New Roman" at 11 pt
+%%  \font\headerfont="Times New Roman" at 9 pt
+%%  \font\headerboldfont="Times New Roman Bold" at 9 pt
+%%  \font\footerboldfont="Times New Roman Bold" at 10 pt
+%%  \titleformat{\chapter}[display]{\chapterfont}
+%%  {\chaptertitlename\ \thechapter}{18pt}{\chaptertitlefont}
+%%  \titleformat{\section}{\sectionfont}{\thesection.}{0.5em}{}
+%%  \titleformat{\subsection}{\subsectionfont}{\thesubsection.}{0.5em}{}
+%%  \titleformat{\subsubsection}{\subsectionfont}{\thesubsubsection.}{0.5em}{}
+%%  \titleformat{\figure}{}{\thefigure\.}{0.5em}{}
+
+\usepackage{sectsty}
+
+%%  \font\smallfont="Times New Roman" at 9 pt
+%%  \font\chapterfont="Times New Roman" at 16 pt
+\chapterfont{\fontsize{16}{20}\selectfont}
+%%  \font\chaptertitlefont="Times New Roman" at 18 pt
+\chaptertitlefont{\fontsize{18}{22}\selectfont}
+%%  \font\sectionfont="Times New Roman Bold" at 11 pt
+\sectionfont{\fontsize{11}{14}\selectfont}
+%%  \font\subsectionfont="Times New Roman" at 11 pt
+\subsectionfont{\fontsize{9}{11}\selectfont}
+%%  \font\headerfont="Times New Roman" at 9 pt
+%%  \font\headerboldfont="Times New Roman Bold" at 9 pt
+%%  \font\footerboldfont="Times New Roman Bold" at 10 pt
+%%  \titleformat{\chapter}[display]{\chapterfont}
+%%  {\chaptertitlename\ \thechapter}{18pt}{\chaptertitlefont}
+%%  \titleformat{\section}{\sectionfont}{\thesection.}{0.5em}{}
+%%  \titleformat{\subsection}{\subsectionfont}{\thesubsection.}{0.5em}{}
+%%  \titleformat{\subsubsection}{\subsectionfont}{\thesubsubsection.}{0.5em}{}
+%%  \titleformat{\figure}{}{\thefigure\.}{0.5em}{}
+
+\lstset{
+    inputencoding=utf8,
+%    backgroundcolor=\color{white},
+    tabsize=4,
+    rulecolor=,
+    basicstyle=\scriptsize,
+    upquote=true,
+%    aboveskip={1.5\baselineskip},
+    columns=fixed,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=single,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    identifierstyle=\ttfamily,
+    keywordstyle=\ttfamily\color[rgb]{0,0,1},
+    commentstyle=\ttfamily\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+}
+
+% Add dots after chapters / sections numbers in TOC.
+\makeatletter
+\def\@seccntformat#1{\csname the#1\endcsname.\quad}
+\def\numberline#1{\hb@xt@\@tempdima{#1\if&#1&\else.\fi\hfil}}
+\makeatother
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
